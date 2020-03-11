@@ -53,7 +53,7 @@
       }
       
       /* Full-width input fields */
-      .form-container input[type=text], .form-container input[type=password] {
+      .form-container input[type=text], .form-container input[type=text] {
         width: 100%;
         padding: 15px;
         margin: 5px 0 22px 0;
@@ -94,7 +94,7 @@
 
 
 <body>
-
+ 
 <div class="container">
     <div class="row">
     
@@ -112,7 +112,8 @@
                     <h3 class="panel-title">Panel Heading</h3>
                   </div>
                   <div class="col col-xs-6 text-right">
-                    <button type="button" class="btn btn-sm btn-primary btn-create" onclick="openForm()">Create New</button>
+                  <button type="button" class="btn btn-sm btn-primary btn-create" onclick="window.location.href='https://www.google.com'">QR CODE</button>
+                    <button type="button" class="btn btn-sm btn-primary btn-create" onclick="window.location.href='/register.html'">Create New</button>
                   </div>
                 </div>
               </div>
@@ -172,9 +173,11 @@
 </div>
 
 <!--===============================================================================================-->
+
 	<script src="js/homeED.js"></script>
   <script src="js/main.js"></script>
   <script>
+
     function openForm() {
       document.getElementById("myForm").style.display = "block";
     }
@@ -182,7 +185,11 @@
     function closeForm() {
       document.getElementById("myForm").style.display = "none";
     }
+ 
     </script>
+
+ 
+    
 
 </body>
 </html>

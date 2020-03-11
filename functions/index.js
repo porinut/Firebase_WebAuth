@@ -372,7 +372,7 @@ try {
         }
     );
    //updateStatus(docid,true);
-    if(list.length!=null){
+    if(list.length!==null){
         updateStatus(docid,false);
     }
     await driver.close();
