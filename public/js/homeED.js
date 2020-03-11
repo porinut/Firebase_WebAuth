@@ -37,35 +37,16 @@ function showData(doc){
   cell3.innerHTML=doc.data().name;
   if(doc.data().status === true){
     cell4.innerHTML='<img src="https://img.icons8.com/flat_round/30/000000/play--v1.png"> ON';
-    //cell5.innerHTML= "<form action='/deleteBot'><input type='hidden' name='email' id='email' value='"+doc.data().email+"'><input type='hidden' name='docid' value='"+docid+"'><button onclick='conf()' class='btn btn-danger' type='submit'>DEACTIVATE</button></form>";
+    cell5.innerHTML= '<form action="/deleteBot" onsubmit="return confirm('+"'Are you sure you want to submit?'"+');"><input type="hidden" name="email" id="email"'+ 'value="'+doc.data().email+'"><input type="hidden" name="docid" value="'+docid+'"><button class="btn btn-danger" type="submit">DEACTIVATE</button></form>';
     //cell5.innerHTML= '<button onclick="conf('+docid + '",'+false+')" class="btn btn-danger">DEACTIVATE</button>';   +' '+'class="btn btn-danger">DEACTIVATE</button>'
-    cell5.innerHTML= '<button onclick=' + "conf('" +docid+ "'"+ ',false)'+ ' class="btn btn-danger">DEACTIVATE</button>';
+    //cell5.innerHTML= '<button onclick=' + "updateStatus('" +docid+ "'"+ ',false)'+ ' class="btn btn-danger">DEACTIVATE</button>';
+    //cell5.innerHTML= '<button onclick="updateStatus()" class="btn btn-danger">DEACTIVATE</button>';
   }else{
     cell4.innerHTML='<img src="https://img.icons8.com/flat_round/30/000000/stop.png"> OFF';
     cell5.innerHTML= "<form action='/shareBot'><input type='hidden' name='email' id='email' value='"+doc.data().email+"'><input type='hidden' name='docid' value='"+docid+"'><button id='active' class='btn btn-success' type='submit'>ACTIVATE</button></form>";
   }
   
 }
-function conf(docid,stat) { 
-  console.log(docid);
-  console.log(stat);
-  var result = confirm("Comfirm delete?"); 
-  if (result == true) { 
-    updateStatus(docid,stat);
-    location.reload();
-  }
-} 
-
-function updateStatus(docid,stat){
-  db.collection("users").doc(docid).update({
-        status: stat
-    }).then(function() {
-      console.log(docid+" : updated");
-    });   
-}
-
-
-
 
 function logout(){
     firebase.auth().signOut();

@@ -27,9 +27,7 @@ app.get('/deleteBot', (request, response) => {
     //scraping(docid,email);
     console.log(email);
     updateStatus(docid,false);
-    backward();
-    //response.send('DELETE BOT SUCCESS!!')
-    //response.sendFile(path.join(__dirname+'/views/progress.html'));
+    response.sendFile(path.join(__dirname, '../public', 'home.html'));
 });
 
 exports.app = functions.https.onRequest(app);
