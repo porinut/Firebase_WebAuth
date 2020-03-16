@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Oswald|Roboto" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript"></script>
+<style rel="stylesheet">
+  .flex-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  #pbar_outerdiv { cursor: pointer; }
+</style>
+</head>
+<body>
+
+
+<div class="flex-container">
+    <div id="pbar_outerdiv" style="width: 300px; height: 20px; border: 1px solid grey; z-index: 1; position: relative; border-radius: 5px; -moz-border-radius: 5px;">
+      <div id="pbar_innerdiv" style="background-color: #0099ff; z-index: 2; height: 100%; width: 0%;"></div>
+      <div id="pbar_innertext" style="z-index: 3; position: absolute; top: 0; left: 0; height: 100%; color: black; font-weight: bold; text-align: center;">0&nbsp;s</div>
+    </div>
+</div>
+
+
+</body>
+<script>
+var timer = 0,
+    timeTotal = 60000,
+    timeCount = 20,
+    timeStart = 0,
+    cFlag;
+
+function updateProgress(percentage) {
+    var x = (percentage/timeTotal)*100,
+        y = x.toFixed();
+        var totalSec= (percentage / 1000);
+         var min = parseInt(totalSec/60);
+         var sec = parseInt(totalSec%60);
+         var hr= parseInt(min/60);
+          min = parseInt(min % 60);
+    $('#pbar_innerdiv').css("width", x + "%");
+    $('#pbar_innertext').css("left", x + "%").text( y + "%");
+    if(y>=100){
+      location.href="home.html";
+    }
+}
+
+function animateUpdate() {
+    var perc = new Date().getTime() - timeStart;
+    if(perc < timeTotal) {
+        updateProgress(perc);
+        timer = setTimeout(animateUpdate, timeCount);
+    } else {
+    	  updateProgress(timeTotal);
+    }
+}
+$(document).ready(function () {
+    $('#pbar_outerdiv').ready(function() {
+        if (cFlag == undefined) {
+            clearTimeout(timer);
+            cFlag = true;
+            timeStart = new Date().getTime();
+            animateUpdate();
+        }
+        else if (!cFlag) {
+            cFlag = true;
+            animateUpdate();
+        }
+        else {
+            clearTimeout(timer);
+            cFlag = false;
+        }
+    });
+    });
+</script>
+
+</html>
