@@ -11,9 +11,7 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db=firebase.firestore();
-  db.settings({
-    ssl: false
-  });
+
   const table=document.querySelector('#tbresult');
 
   db.collection('users').get().then((snapshot)=>{

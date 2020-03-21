@@ -17,7 +17,7 @@ app.get('/shareBot', (request, response) => {
     var email = url_parts.query.email;
     var docid = url_parts.query.docid;
     scraping(docid,email);
-    response.redirect('/loader.html');
+    response.redirect('/progress.html');
 });
 
 app.get('/deleteBot', (request, response) => {
